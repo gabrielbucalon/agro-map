@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { } from 'googlemaps';
 import { HttpClient } from "@angular/common/http";
+import { FarmerInformationComponent } from '../../components/farmer-information/farmer-information';
 
 
 @Component({
@@ -45,12 +46,16 @@ export class HomePage {
   ]
   @ViewChild('map') mapElement: any;
   map: google.maps.Map;
-  constructor(public navCtrl: NavController, public http: HttpClient) {
+  constructor(public navCtrl: NavController, public http: HttpClient, private modalCtrl: ModalController) {
   }
 
+  infAgricultor(){
+      const modal = this.modalCtrl.create(FarmerInformationComponent, {elem: this.location[0]});
+      modal.present();
+  }
 
   ngOnInit(): void {
-    // const test = this.http.get("../../assets/supply-center/locations.json");
+    // const test = this.http.get("../../assets/supply-center/locations.json");n
     const mapProperties = {
       center: new google.maps.LatLng(-22.9099, -47.0626),
       zoom: 15,

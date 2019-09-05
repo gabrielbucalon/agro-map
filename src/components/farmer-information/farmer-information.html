@@ -1,0 +1,53 @@
+<!-- Generated template for the FarmerInformationComponent component -->
+<div>
+  <ion-row>
+    <ion-col col-12>
+      <h3>{{infFarmer.nameGroupConsum}}</h3>
+    </ion-col>
+  </ion-row>
+  <hr>
+  <ion-row margin>
+    <ion-col col-12>
+      <span> <strong> História </strong></span>
+    </ion-col>
+  </ion-row>
+  <ion-row margin class="history">
+    <ion-col col-12>
+      <span>{{infFarmer.history}}</span>
+    </ion-col>
+  </ion-row>
+  <hr>
+  <ion-row margin>
+    <ion-col col-7>
+      <span col-3>
+        <strong>
+          Entrega :
+        </strong>
+      </span>
+      <span col-3>{{infFarmer.deliveres}}</span>
+    </ion-col>
+    <hr>
+    <ion-col col-5>
+      <span col-3>
+        <strong>
+          Hora :
+        </strong>
+      </span>
+      <span col-3>{{infFarmer.hour}}</span>
+    </ion-col>
+    <hr>
+    <ion-col col-12 margin-top>
+      <span col-2>
+        <strong>
+          Endereço :
+        </strong>
+      </span>
+      <span col-10>{{infFarmer.adress}} </span>
+    </ion-col>
+  </ion-row>
+  <ion-row margin>
+    <ion-col class="btn-inf-farmer" col-12>
+      <button ion-button color="secondary" (click)="close()">Fechar</button>
+    </ion-col>
+  </ion-row>
+</div>
