@@ -2,13 +2,15 @@
 <div>
   <ion-row>
     <ion-col col-12>
-      <h3>{{infFarmer.nameGroupConsum}}</h3>
+      <h3>{{infFarmer.nameGroupConsum}}
+        <i margin-left class="fas fa-users"></i>
+      </h3>
     </ion-col>
   </ion-row>
   <hr>
   <ion-row margin>
     <ion-col col-12>
-      <span> <strong> História </strong></span>
+      <span> <strong> <i margin-left class="fas fa-book"></i> História </strong></span>
     </ion-col>
   </ion-row>
   <ion-row margin class="history">
@@ -20,6 +22,7 @@
   <ion-row margin>
     <ion-col col-7>
       <span col-3>
+        <i class="fas fa-truck-loading"></i>
         <strong>
           Entrega :
         </strong>
@@ -30,6 +33,7 @@
     <ion-col col-5>
       <span col-3>
         <strong>
+          <i class="fas fa-clock"></i>
           Hora :
         </strong>
       </span>
@@ -39,6 +43,8 @@
     <ion-col col-12 margin-top>
       <span col-2>
         <strong>
+
+          <i class="fas fa-map-marked-alt"></i>
           Endereço :
         </strong>
       </span>
@@ -47,7 +53,7 @@
   </ion-row>
   <ion-row margin>
     <ion-col class="btn-inf-farmer" col-12>
-      <button ion-button color="secondary" (click)="close()">Fechar</button>
+        <button ion-button color="danger" (click)="close()" outline>Fechar<i margin-left class="fas fa-times"></i></button>
     </ion-col>
   </ion-row>
 </div>

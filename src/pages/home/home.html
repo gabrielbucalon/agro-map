@@ -8,10 +8,56 @@
 </ion-header>
 
 <ion-content padding>
-  <div #map style="width:100%;height:400px"></div>
   <ion-row>
     <ion-col col-12>
-      <button ion-button color="secondary" (click)="infAgricultor()">Informações do agricultor</button>
+      <ion-card>
+        <ion-card-header>
+          <span>
+            Agricultores
+            <i class="fas fa-seedling"></i>
+          </span>
+          <button ion-button color="secondary" (click)="viewFilter  = !viewFilter;">Filtro
+            <i margin-left class="fas fa-filter"></i>
+          </button>
+        </ion-card-header>
+        <ion-row *ngIf="viewFilter">
+          <ion-col col-12 class="filters">
+            <!-- perido e movimento (talvez o nome da corperativa.) -->
+            <ion-list col-3 >
+              <ion-item>
+                <ion-label floating>Periodo</ion-label>
+                <ion-select [(ngModel)]="days">
+                  <ion-option *ngFor="let item of data">{{item.weekDaysMonth}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+
+            <ion-list col-3>
+              <ion-item>
+                <ion-label floating>Movimento</ion-label>
+                <ion-select [(ngModel)]="move">
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-card-content>
+          <div #map style="width:100%;height:400px"></div>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-12>
+      <button ion-button color="secondary" (click)="infFarmer()">Informações do agricultor
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-12>
+
     </ion-col>
   </ion-row>
 </ion-content>

@@ -3,8 +3,15 @@ farmer-information {
     .btn-inf-farmer{
         display: flex;
         justify-content: flex-end;  
-        margin-top: 25%;
+        margin-top: 22%;
     }
+    i.fas.fa-times {
+        color: #FF6347;
+    }
+    i{
+        color: #36793b;
+    }
+  
     .history{
         margin: -10px 0px -10px 17px !important;
     }

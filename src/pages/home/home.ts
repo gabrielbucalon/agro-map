@@ -44,15 +44,23 @@ export class HomePage {
       hour: "18h30 as 19h30"
     }
   ]
+  data = [{weekDaysMonth: "Semanalmente"}, {weekDaysMonth: "Quinzenalmente"}, {weekDaysMonth: "Mensal"}]
+  viewFilter: boolean = false;
   @ViewChild('map') mapElement: any;
   map: google.maps.Map;
   constructor(public navCtrl: NavController, public http: HttpClient, private modalCtrl: ModalController) {
   }
 
-  infAgricultor(){
-      const modal = this.modalCtrl.create(FarmerInformationComponent, {elem: this.location[0]});
-      modal.present();
+  infFarmer(): void {
+    const modal = this.modalCtrl.create(FarmerInformationComponent, { elem: this.location[0] });
+    modal.present();
   }
+
+  // searchFarmer(): void {
+    
+  //   // const modal = this.modalCtrl.create(SearchComponent);
+  //   // modal.present();
+  // }
 
   ngOnInit(): void {
     // const test = this.http.get("../../assets/supply-center/locations.json");n
