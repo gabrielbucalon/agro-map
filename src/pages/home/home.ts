@@ -3,6 +3,7 @@ import { NavController, ModalController } from 'ionic-angular';
 import { } from 'googlemaps';
 import { HttpClient } from "@angular/common/http";
 import { FarmerInformationComponent } from '../../components/farmer-information/farmer-information';
+import { LocationsProvider } from "../../providers/locations/locations";
 
 
 @Component({
@@ -44,11 +45,13 @@ export class HomePage {
       hour: "18h30 as 19h30"
     }
   ]
-  data = [{weekDaysMonth: "Semanalmente"}, {weekDaysMonth: "Quinzenalmente"}, {weekDaysMonth: "Mensal"}]
+  teste;
+  data = [{ weekDaysMonth: "Semanalmente" }, { weekDaysMonth: "Quinzenalmente" }, { weekDaysMonth: "Mensal" }]
   viewFilter: boolean = false;
   @ViewChild('map') mapElement: any;
   map: google.maps.Map;
-  constructor(public navCtrl: NavController, public http: HttpClient, private modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public http: HttpClient, private modalCtrl: ModalController, public locationsProv: LocationsProvider) {
+    console.log(this.data);
   }
 
   infFarmer(): void {
@@ -57,19 +60,41 @@ export class HomePage {
   }
 
   // searchFarmer(): void {
-    
+
   //   // const modal = this.modalCtrl.create(SearchComponent);
   //   // modal.present();
   // }
 
-  ngOnInit(): void {
-    // const test = this.http.get("../../assets/supply-center/locations.json");n
-    const mapProperties = {
-      center: new google.maps.LatLng(-22.9099, -47.0626),
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
+  getMarker(data: any): Object {
+    const dataSource = [];
+    let obj: any = new Object();
+    data.map((element: any) => {
+      let lat = parseFloat(element.latitude)
+      let lgn = parseFloat(element.longitude)
+      dataSource.push({lat, lgn});
+    });
+    console.log(dataSource);
+    return dataSource;
   }
 
+  ngOnInit(): void {
+    // const test = this.http.get("../../assets/supply-center/locations.json");n
+    this.locationsProv.findAll().subscribe((res: any) => {
+      const dataSource: any = this.getMarker(res);
+      const mapProperties = {
+        center: new google.maps.LatLng(-22.9099, -47.0626),
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      const marker = new google.maps.Marker({
+        position: dataSource.map((elem: any) =>  {
+          return (Number(elem));
+        }),
+        map: this.map,
+      })
+      marker.setMap(this.map);
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
+      
+    })
+  }
 }

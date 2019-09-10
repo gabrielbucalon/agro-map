@@ -10,6 +10,7 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FarmerInformationComponent } from '../components/farmer-information/farmer-information';
+import { LocationsProvider } from '../providers/locations/locations';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FarmerInformationComponent } from '../components/farmer-information/far
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    LocationsProvider
   ]
 })
 export class AppModule {}
