@@ -67,34 +67,50 @@ export class HomePage {
 
   getMarker(data: any): Object {
     const dataSource = [];
-    let obj: any = new Object();
     data.map((element: any) => {
       let lat = parseFloat(element.latitude)
       let lgn = parseFloat(element.longitude)
-      dataSource.push({lat, lgn});
+      dataSource.push({ lat, lgn });
     });
-    console.log(dataSource);
     return dataSource;
   }
 
+
+
   ngOnInit(): void {
     // const test = this.http.get("../../assets/supply-center/locations.json");n
+    // var myLatLng = { lat: -25.363, lng: 131.044 };
+
+    // var map = new google.maps.Map(document.getElementById('map'), {
+    //   zoom: 4,
+    //   center: myLatLng
+    // });
+
+    // var marker = new google.maps.Marker({
+    //   position: myLatLng,
+    //   map: map,
+    //   title: 'Olá, mundo!'
+    // });
+
     this.locationsProv.findAll().subscribe((res: any) => {
       const dataSource: any = this.getMarker(res);
+      
       const mapProperties = {
         center: new google.maps.LatLng(-22.9099, -47.0626),
-        zoom: 15,
+        zoom: 10,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
-      const marker = new google.maps.Marker({
-        position: dataSource.map((elem: any) =>  {
-          return (Number(elem));
-        }),
-        map: this.map,
-      })
-      marker.setMap(this.map);
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-      
-    })
+      this.addMarker(dataSource);
+    });
+  }
+
+  private addMarker(map) {
+    for (let index = 0; index < map.length; index++) {
+      const marker = new google.maps.Marker({
+        position: new google.maps.LatLng(map[index].lat, map[index].lgn),
+        map: this.map
+      })
+    }
   }
 }
