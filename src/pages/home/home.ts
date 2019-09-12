@@ -45,7 +45,6 @@ export class HomePage {
       hour: "18h30 as 19h30"
     }
   ]
-  teste;
   data = [{ weekDaysMonth: "Semanalmente" }, { weekDaysMonth: "Quinzenalmente" }, { weekDaysMonth: "Mensal" }]
   viewFilter: boolean = false;
   @ViewChild('map') mapElement: any;
@@ -78,20 +77,6 @@ export class HomePage {
 
 
   ngOnInit(): void {
-    // const test = this.http.get("../../assets/supply-center/locations.json");n
-    // var myLatLng = { lat: -25.363, lng: 131.044 };
-
-    // var map = new google.maps.Map(document.getElementById('map'), {
-    //   zoom: 4,
-    //   center: myLatLng
-    // });
-
-    // var marker = new google.maps.Marker({
-    //   position: myLatLng,
-    //   map: map,
-    //   title: 'Olá, mundo!'
-    // });
-
     this.locationsProv.findAll().subscribe((res: any) => {
       const dataSource: any = this.getMarker(res);
       
